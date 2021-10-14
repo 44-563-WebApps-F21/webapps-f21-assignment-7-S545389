@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> <head> 
+    <title>stack</title>
+    <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: #d0ff00;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #1d84c9; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style>
+</head>
+<body>
+    <h2>Ruchitha Merugu builds a stack</h2>
+    <p>Enter Input:</p>
+    <input id="texted" type="text"></input>
+		<div class="flex-container" id="target">
+		  <div class="stack">row item 1</div>   
+		  <div class="stack">row item 2</div>  
+		  <div class="stack">row item 3</div>  
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.
+		</p>
+		<button onclick="makeNewDiv()">Push value</button>
+        <button onclick="popItem()">Pop</button>
+        <button onclick="zap()">Zap value</button>
+        <button onclick="unique()">unique</button>
+
+</body>
+<script>
+        function makeNewDiv() {
+        let element = document.createElement("div")
+        let input = document.getElementById("texted")
+        element.innerHTML = input.value
+        element.className = "stack"
+        document.getElementById('target').appendChild(element)
+    }
+    function popItem() {
+        var s = document.getElementsByClassName("stack")
+        var length = s.length
+        if (length > 0)
+            s[length - 1].remove()
+    }
+    function zap() {
+        var s = document.getElementsByClassName("stack")
+        let input = document.getElementById("texted").value
+        if (s != undefined && s.length > 0) {
+            for (let i = 0; i < s.length; i++) {
+                if (s[i].innerHTML == input) {
+                    var itemToBeRemoved = s[i].innerHTML
+                    s[i].remove()
+                    console.log(itemToBeRemoved)
+                    i--;
+                }
+            }
+        }
+    }
+    function unique() {
+		var items = document.getElementsByClassName("stack")
+		for (var i = 0; i < items.length; i++) {
+			for (var j = i + 1; j < items.length; j++) {
+				if (items[i].innerHTML == items[j].innerHTML) {
+					items[i].remove()
+					j--; i--
+				}
+			}
+		}
+	}
+
+</script>
+
+</html>
+    
